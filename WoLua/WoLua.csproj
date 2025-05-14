@@ -4,7 +4,7 @@
 		<Product>WoLua</Product>
 		<Description>Warrior of... Lua? Write your own chat commands in lua for FFXIV/Dalamud!</Description>
 		<Copyright>Copyleft VariableVixen 2022</Copyright>
-                <IsPackable>false</IsPackable>
+        <IsPackable>false</IsPackable>
 		<TargetFramework>net9.0-windows7.0</TargetFramework>
 	</PropertyGroup>
 
