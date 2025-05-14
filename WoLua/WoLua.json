@@ -1,7 +1,7 @@
 {
 	"Name": "WoLua",
-	"Author": "VariableVixen",
+	"Author": "VariableVixen, Anya Hichu",
 	"Description": "Write custom chat commands by creating lua scripts",
-	"RepoUrl": "https://github.com/VariableVixen/WoLua",
+	"RepoUrl": "https://github.com/anya-hichu/WoLua",
 	"Punchline": "Write your own custom chat commands in lua!"
 }
