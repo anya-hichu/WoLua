@@ -1,4 +1,4 @@
-# WoLua
+# Fork of WoLua
 _Warrior of... Lua?_
 
 ![GitHub build status](https://img.shields.io/github/actions/workflow/status/anya-hichu/WoLua/build.yml?logo=github)
@@ -6,7 +6,7 @@ _Warrior of... Lua?_
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/anya-hichu/WoLua/master?label=updated)
 [![GitHub issues](https://img.shields.io/github/issues-raw/anya-hichu/WoLua?label=known%20issues)](https://github.com/anya-hichu/WoLua/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
 
-[![Support me!](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V7IK9UU)
+Original author: [![Support me!](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V7IK9UU)
 
 ## About
 [![License](https://img.shields.io/github/license/anya-hichu/WoLua?logo=github&color=informational&cacheSeconds=86400)](https://github.com/anya-hichu/WoLua/blob/master/LICENSE)
