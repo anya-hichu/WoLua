@@ -1,10 +1,10 @@
 using System;
 
-namespace PrincessRTFM.WoLua.Lua.Api;
+namespace WoLua.Lua.Api;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-internal class WipeOnDisposeAttribute: Attribute {
-	public bool Value { get; init; }
-	public WipeOnDisposeAttribute(bool value) => this.Value = value;
+internal class WipeOnDisposeAttribute(bool value): Attribute {
+	public bool Value { get; init; } = value;
+
 	public WipeOnDisposeAttribute() : this(true) { }
 }

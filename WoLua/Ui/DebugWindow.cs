@@ -9,10 +9,10 @@ using ImGuiNET;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Lua;
-using PrincessRTFM.WoLua.Lua.Api;
+using WoLua.Lua;
+using WoLua.Lua.Api;
 
-namespace PrincessRTFM.WoLua.Ui;
+namespace WoLua.Ui;
 
 internal class DebugWindow: BaseWindow {
 	public const ImGuiWindowFlags CreationFlags = ImGuiWindowFlags.None

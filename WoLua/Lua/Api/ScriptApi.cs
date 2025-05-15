@@ -11,17 +11,16 @@ using ImGuiNET;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Serialization.Json;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Actions;
-using PrincessRTFM.WoLua.Lua.Api.Script;
-using PrincessRTFM.WoLua.Lua.Docs;
+using WoLua.Constants;
+using WoLua.Lua.Actions;
+using WoLua.Lua.Api.Script;
+using WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api;
+namespace WoLua.Lua.Api;
 
 // This API is for all for everything that doesn't relate to the actual game itself.
 // It also contains script-specific and per-script functionality, like persistent storage.
 [MoonSharpUserData]
-[SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Documentation generation only reflects instance members")]
 public class ScriptApi: ApiBase {
 	#region Non-API functionality
 

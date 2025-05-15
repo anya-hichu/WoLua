@@ -1,16 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
+namespace WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
-
-[SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "the names are defined externally")]
 [Flags]
 public enum LuaType: ushort {
 	Any = 0,

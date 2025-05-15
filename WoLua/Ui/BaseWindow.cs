@@ -6,7 +6,7 @@ using Dalamud.Interface.Windowing;
 
 using ImGuiNET;
 
-namespace PrincessRTFM.WoLua.Ui;
+namespace WoLua.Ui;
 
 internal abstract class BaseWindow: Window {
 	protected BaseWindow(string name, ImGuiWindowFlags flags = ImGuiWindowFlags.None, bool forceMainWindow = false) : base(name, flags, forceMainWindow) {

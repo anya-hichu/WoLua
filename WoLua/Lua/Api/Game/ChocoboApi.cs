@@ -2,9 +2,9 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
+using WoLua.Constants;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+namespace WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 public class ChocoboApi: ApiBase { // TODO luadoc all of this

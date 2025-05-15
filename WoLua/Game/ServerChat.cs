@@ -9,7 +9,7 @@ using FFXIVClientStructs.FFXIV.Client.System.Memory;
 using FFXIVClientStructs.FFXIV.Client.System.String;
 using FFXIVClientStructs.FFXIV.Client.UI;
 
-namespace PrincessRTFM.WoLua.Game;
+namespace WoLua.Game;
 
 internal class ServerChat {
 	private static class Signatures {

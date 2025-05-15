@@ -1,6 +1,6 @@
 using MoonSharp.Interpreter;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+namespace WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 public class PartyApi: ApiBase { // TODO luadoc all of this

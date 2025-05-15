@@ -9,17 +9,16 @@ using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Game;
-using PrincessRTFM.WoLua.Lua.Api.Game;
-using PrincessRTFM.WoLua.Lua.Docs;
-using PrincessRTFM.WoLua.Ui.Chat;
+using WoLua.Constants;
+using WoLua.Game;
+using WoLua.Lua.Api.Game;
+using WoLua.Lua.Docs;
+using WoLua.Ui.Chat;
 
-namespace PrincessRTFM.WoLua.Lua.Api;
+namespace WoLua.Lua.Api;
 
 // This API is for everything pertaining to the actual game, including holding more specific APIs.
 [MoonSharpUserData]
-[SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Documentation generation only reflects instance members")]
 public class GameApi: ApiBase {
 
 	#region Initialisation

@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
-using PrincessRTFM.WoLua.Constants;
+using WoLua.Constants;
 
-namespace PrincessRTFM.WoLua;
+namespace WoLua;
 
 public sealed class MethodTimer: IDisposable {
 	private readonly Stopwatch timer;

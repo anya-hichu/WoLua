@@ -1,9 +1,8 @@
 using System;
 
-namespace PrincessRTFM.WoLua.Lua;
+namespace WoLua.Lua;
 
 [AttributeUsage(AttributeTargets.Property)]
-internal class LuaGlobalAttribute: Attribute {
-	public readonly string Name;
-	public LuaGlobalAttribute(string name) => this.Name = name;
+internal class LuaGlobalAttribute(string name): Attribute {
+	public readonly string Name = name;
 }

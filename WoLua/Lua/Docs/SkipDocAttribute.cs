@@ -1,6 +1,6 @@
 using System;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+namespace WoLua.Lua.Docs;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]
 internal class SkipDocAttribute: Attribute {

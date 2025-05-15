@@ -3,20 +3,15 @@ using System.Collections.ObjectModel;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Api;
+using WoLua.Constants;
+using WoLua.Lua.Api;
 
-namespace PrincessRTFM.WoLua.Lua.Actions;
+namespace WoLua.Lua.Actions;
 
-public class CallbackAction: ScriptAction {
-	public DynValue Function { get; }
-	private readonly DynValue[] arguments;
+public class CallbackAction(DynValue callback, params DynValue[] arguments): ScriptAction {
+	public DynValue Function { get; } = callback;
+	private readonly DynValue[] arguments = arguments;
 	public ReadOnlyCollection<DynValue> Arguments => Array.AsReadOnly(this.arguments);
-
-	public CallbackAction(DynValue callback, params DynValue[] arguments) {
-		this.Function = callback;
-		this.arguments = arguments;
-	}
 
 	protected override void Process(ScriptContainer script) {
 		script.Log(ApiBase.ToUsefulString(this.Function), LogTag.ActionCallback);

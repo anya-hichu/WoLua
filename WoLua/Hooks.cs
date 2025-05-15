@@ -5,7 +5,7 @@ using Dalamud.Game.ClientState.Objects.Types;
 using FFXIVClientStructs.FFXIV.Client.Game.Object;
 using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 
-namespace PrincessRTFM.WoLua;
+namespace WoLua;
 
 public class Hooks: IDisposable {
 	private bool disposed;

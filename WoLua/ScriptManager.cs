@@ -4,10 +4,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua;
+using WoLua.Constants;
+using WoLua.Lua;
 
-namespace PrincessRTFM.WoLua;
+namespace WoLua;
 
 public class ScriptManager: IDisposable {
 	private ConcurrentDictionary<string, ScriptContainer> loadedScripts { get; } = new();

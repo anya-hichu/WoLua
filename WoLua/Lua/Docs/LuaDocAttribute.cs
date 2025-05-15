@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+namespace WoLua.Lua.Docs;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.ReturnValue, Inherited = true)]
-internal partial class LuaDocAttribute: Attribute {
+internal partial class LuaDocAttribute(params string[] help): Attribute {
 	private static readonly Regex lineBreakTag = lineBreakRegex();
 
-	public string Description { get; protected init; }
+	public string Description { get; protected init; } = CleanJoin(help);
 	public string[] Lines => this.Description.Split('\n', StringSplitOptions.TrimEntries);
-
-	public LuaDocAttribute(params string[] help) => this.Description = CleanJoin(help);
 
 	[GeneratedRegex("<br\\s*/?>", RegexOptions.IgnoreCase | RegexOptions.Compiled)]
 	private static partial Regex lineBreakRegex();

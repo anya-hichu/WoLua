@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 
 using Dalamud.Hooking;
 
-using PrincessRTFM.WoLua.Constants;
+using WoLua.Constants;
 
-namespace PrincessRTFM.WoLua.Game;
+namespace WoLua.Game;
 
 public abstract class GameFunctionBase<T> where T : Delegate {
 	private readonly IntPtr addr = IntPtr.Zero;

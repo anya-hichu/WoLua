@@ -1,15 +1,12 @@
-using System.Diagnostics.CodeAnalysis;
-
 using ImGuiNET;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Lua.Docs;
+using WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Script;
+namespace WoLua.Lua.Api.Script;
 
 [MoonSharpUserData]
-[SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Documentation generation only reflects instance members")]
 public class KeysApi: ApiBase {
 	public KeysApi(ScriptContainer source) : base(source) { }
 

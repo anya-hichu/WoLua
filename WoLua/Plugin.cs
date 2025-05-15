@@ -18,13 +18,13 @@ using Lumina.Excel.Sheets;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Platforms;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua;
-using PrincessRTFM.WoLua.Lua.Api.Game;
-using PrincessRTFM.WoLua.Ui;
-using PrincessRTFM.WoLua.Ui.Chat;
+using WoLua.Constants;
+using WoLua.Lua;
+using WoLua.Lua.Api.Game;
+using WoLua.Ui;
+using WoLua.Ui.Chat;
 
-namespace PrincessRTFM.WoLua;
+namespace WoLua;
 
 public class Plugin: IDalamudPlugin {
 	public const InteropAccessMode TypeRegistrationMode = InteropAccessMode.BackgroundOptimized;
@@ -65,7 +65,7 @@ public class Plugin: IDalamudPlugin {
 	public Plugin(IDalamudPluginInterface i) {
 		using MethodTimer logtimer = new();
 
-		this.Version = FileVersionInfo.GetVersionInfo(i.AssemblyLocation.FullName).ProductVersion ?? "?.?.?";
+		this.Version = FileVersionInfo.GetVersionInfo(i.AssemblyLocation.FullName).FileVersion ?? "?.?.?.?";
 		if (i.Create<Service>(this, i.GetPluginConfig() ?? new PluginConfiguration()) is null)
 			throw new ApplicationException("Failed to initialise service container");
 
@@ -298,8 +298,6 @@ public class Plugin: IDalamudPlugin {
 	}
 
 	#endregion
-
-	public void NYI() => this.Error("This feature is not yet implemented.");
 
 	#region Disposable
 	private bool disposed = false;

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Api;
+using WoLua.Constants;
+using WoLua.Lua.Api;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+namespace WoLua.Lua.Docs;
 
 internal static class LuadocGenerator {
 	private static readonly Assembly ownAssembly = typeof(LuadocGenerator).Assembly;

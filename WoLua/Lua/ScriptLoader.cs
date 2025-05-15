@@ -4,9 +4,9 @@ using System.IO;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Loaders;
 
-using PrincessRTFM.WoLua.Constants;
+using WoLua.Constants;
 
-namespace PrincessRTFM.WoLua.Lua;
+namespace WoLua.Lua;
 
 public class ScriptLoader: IScriptLoader {
 	public string BaseDir { get; }
