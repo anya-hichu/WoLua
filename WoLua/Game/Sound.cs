@@ -1,4 +1,4 @@
-namespace PrincessRTFM.WoLua.Game;
+namespace VariableVixen.WoLua.Game;
 
 public enum Sound: byte {
 	None = 0x00,

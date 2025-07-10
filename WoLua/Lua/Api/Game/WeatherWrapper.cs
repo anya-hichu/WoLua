@@ -6,10 +6,11 @@ using Lumina.Excel.Sheets;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+using VariableVixen.WoLua.Constants;
+
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 [MoonSharpHideMember(nameof(Equals))]

@@ -3,10 +3,12 @@ using System.Collections.ObjectModel;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Api;
+using VariableVixen.WoLua.Lua;
 
-namespace PrincessRTFM.WoLua.Lua.Actions;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Api;
+
+namespace VariableVixen.WoLua.Lua.Actions;
 
 public class CallbackAction: ScriptAction {
 	public DynValue Function { get; }

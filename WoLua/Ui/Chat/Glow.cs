@@ -1,6 +1,6 @@
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 
-namespace PrincessRTFM.WoLua.Ui.Chat;
+namespace VariableVixen.WoLua.Ui.Chat;
 
 public static class Glow {
 	public static readonly UIGlowPayload

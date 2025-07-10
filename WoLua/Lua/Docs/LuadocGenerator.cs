@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Api;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Api;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+namespace VariableVixen.WoLua.Lua.Docs;
 
 internal static class LuadocGenerator {
 	private static readonly Assembly ownAssembly = typeof(LuadocGenerator).Assembly;
@@ -80,14 +80,14 @@ internal static class LuadocGenerator {
 		using MethodTimer timer = new();
 		string contents;
 		try {
-			contents = LuadocGenerator.GenerateLuadoc();
+			contents = GenerateLuadoc();
 		}
 		catch (Exception e) {
 			Service.Plugin.Error("Failed to generate lua API reference", e);
 			return false;
 		}
 		try {
-			string path = LuadocGenerator.ApiDefinitionFilePath;
+			string path = ApiDefinitionFilePath;
 			File.WriteAllText(path, contents);
 			Service.Plugin.Print($"Lua API reference written to {path}");
 		}
@@ -152,9 +152,8 @@ internal static class LuadocGenerator {
 		foreach (MethodInfo m in metamethods) {
 			IEnumerable<string> overloads = m.GetCustomAttributes<MoonSharpUserDataMetamethodAttribute>().Select(a => a.Name);
 
-			if (m.Name is "ToString") { // special handling for stringification because it's not recognised as an operation, so it has to be left out
+			if (m.Name is "ToString") {
 				Service.Log.Info($"[{LogTag.GenerateDocs}] Skipping stringification metamethod {m.DeclaringType!.Name}.{m.Name}");
-				//docs.AppendLine("---@operator tostring:string");
 			}
 			else {
 				foreach (string overload in overloads) {

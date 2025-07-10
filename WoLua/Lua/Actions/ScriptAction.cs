@@ -1,4 +1,6 @@
-namespace PrincessRTFM.WoLua.Lua.Actions;
+using VariableVixen.WoLua.Lua;
+
+namespace VariableVixen.WoLua.Lua.Actions;
 
 public abstract class ScriptAction {
 	public void Run(ScriptContainer script) {

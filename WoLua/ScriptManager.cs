@@ -4,10 +4,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua;
 
-namespace PrincessRTFM.WoLua;
+namespace VariableVixen.WoLua;
 
 public class ScriptManager: IDisposable {
 	private ConcurrentDictionary<string, ScriptContainer> loadedScripts { get; } = new();
@@ -128,9 +128,8 @@ public class ScriptManager: IDisposable {
 					if (!script.RegisterCommand())
 						Service.Plugin.Error($"Unable to register //{script.InternalName} - is it already in use?");
 				}
-				if (!script.Ready) {
+				if (!script.Ready)
 					Service.Log.Error($"[{LogTag.ScriptLoader}:{slug}] Script does not have a registered callback!");
-				}
 			}
 			else {
 				Service.Log.Error($"[{LogTag.ScriptLoader}:{slug}] Cannot load script {name}, no initialisation file exists");
@@ -155,9 +154,8 @@ public class ScriptManager: IDisposable {
 			return;
 		this.disposed = true;
 
-		if (disposing) {
+		if (disposing)
 			this.ClearAllScripts();
-		}
 	}
 
 	public void Dispose() {

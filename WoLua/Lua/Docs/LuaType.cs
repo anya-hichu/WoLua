@@ -6,9 +6,9 @@ using System.Linq;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
+using VariableVixen.WoLua.Constants;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+namespace VariableVixen.WoLua.Lua.Docs;
 
 [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "the names are defined externally")]
 [Flags]
@@ -66,9 +66,9 @@ public static class LuaTypeExtensions {
 			lua |= LuaType.Table;
 		else if (realType == typeof(void))
 			lua |= LuaType.Nil;
-		else if (realType.IsAssignableTo(typeof(IEnumerable)) || (realType.IsGenericType && realType.GetGenericTypeDefinition() == typeof(IEnumerable<>)))
+		else if (realType.IsAssignableTo(typeof(IEnumerable)) || realType.IsGenericType && realType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
 			lua |= LuaType.Table;
-		else if (realType.IsAssignableTo(typeof(IDictionary)) || (realType.IsGenericType && realType.GetGenericTypeDefinition() == typeof(IDictionary<,>)))
+		else if (realType.IsAssignableTo(typeof(IDictionary)) || realType.IsGenericType && realType.GetGenericTypeDefinition() == typeof(IDictionary<,>))
 			lua |= LuaType.Table;
 		else
 			lua |= LuaType.Userdata;

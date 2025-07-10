@@ -6,10 +6,12 @@ using Dalamud.Plugin.Services;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Actions;
+using VariableVixen.WoLua.Lua;
 
-namespace PrincessRTFM.WoLua.Lua;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Actions;
+
+namespace VariableVixen.WoLua.Lua;
 
 [SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix", Justification = "It's a queue for script actions")]
 public class ActionQueue: IDisposable {

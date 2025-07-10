@@ -7,11 +7,13 @@ using System.Reflection;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Serialization.Json;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Docs;
-using PrincessRTFM.WoLua.Ui.Chat;
+using VariableVixen.WoLua.Lua;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Ui.Chat;
+
+namespace VariableVixen.WoLua.Lua.Api;
 
 public abstract class ApiBase: IDisposable {
 	private const BindingFlags AllInstance = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;

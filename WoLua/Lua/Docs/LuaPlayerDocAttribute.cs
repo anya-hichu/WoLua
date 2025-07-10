@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Lua.Docs;
+
+namespace VariableVixen.WoLua.Lua.Docs;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
 internal partial class LuaPlayerDocAttribute: LuaDocAttribute {

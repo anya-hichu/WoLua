@@ -4,10 +4,14 @@ using System.Linq;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Serialization.Json;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Lua;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Script;
+using VariableVixen.WoLua;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Api;
+
+namespace VariableVixen.WoLua.Lua.Api.Script;
 
 [MoonSharpUserData]
 public class DebugApi: ApiBase {

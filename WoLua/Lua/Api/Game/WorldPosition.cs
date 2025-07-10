@@ -8,9 +8,9 @@ using Lumina.Excel.Sheets;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 [MoonSharpHideMember(nameof(Equals))]
@@ -48,9 +48,8 @@ public sealed record class WorldPosition(float? PosX, float? PosY, float? PosZ):
 			if (zone > 0) {
 				Map? map = Service.DataManager.GetExcelSheet<Map>()!.GetRowOrDefault(zone);
 				TerritoryTypeTransient? territoryTransient = Service.DataManager.GetExcelSheet<TerritoryTypeTransient>()!.GetRowOrDefault(zone);
-				if (map.HasValue && territoryTransient.HasValue) {
+				if (map.HasValue && territoryTransient.HasValue)
 					return MapUtil.WorldToMap(this.GameEnginePosition, map.Value, territoryTransient.Value, true);
-				}
 			}
 			return null;
 		}

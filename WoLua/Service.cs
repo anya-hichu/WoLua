@@ -5,13 +5,13 @@ using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Game;
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Game;
+using VariableVixen.WoLua.Lua.Docs;
 
 using XivCommon;
 
-namespace PrincessRTFM.WoLua;
+namespace VariableVixen.WoLua;
 
 internal class Service {
 

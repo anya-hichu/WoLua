@@ -4,7 +4,9 @@ using Dalamud.Game.Gui.Toast;
 
 using MoonSharp.Interpreter;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+using VariableVixen.WoLua.Lua;
+
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "It doesn't matter")]

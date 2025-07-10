@@ -1,4 +1,4 @@
-namespace PrincessRTFM.WoLua.Game;
+namespace VariableVixen.WoLua.Game;
 
 public delegate ulong SoundFunc(int soundId, ulong unknown1, ulong unknown2);
 

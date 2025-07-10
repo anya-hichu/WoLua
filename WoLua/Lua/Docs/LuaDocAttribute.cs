@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+namespace VariableVixen.WoLua.Lua.Docs;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.ReturnValue, Inherited = true)]
 internal partial class LuaDocAttribute: Attribute {

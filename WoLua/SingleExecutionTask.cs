@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace PrincessRTFM.WoLua;
+namespace VariableVixen.WoLua;
 
 public class SingleExecutionTask {
 	private readonly Action func;

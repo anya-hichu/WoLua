@@ -1,4 +1,4 @@
-namespace PrincessRTFM.WoLua.Constants;
+namespace VariableVixen.WoLua.Constants;
 
 public static class LogTag {
 	public const string

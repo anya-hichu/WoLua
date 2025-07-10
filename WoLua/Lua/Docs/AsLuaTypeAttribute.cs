@@ -1,6 +1,6 @@
 using System;
 
-namespace PrincessRTFM.WoLua.Lua.Docs;
+namespace VariableVixen.WoLua.Lua.Docs;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
 internal class AsLuaTypeAttribute: Attribute {

@@ -1,8 +1,8 @@
 using Dalamud.Configuration;
 
-using PrincessRTFM.WoLua.Constants;
+using VariableVixen.WoLua.Constants;
 
-namespace PrincessRTFM.WoLua;
+namespace VariableVixen.WoLua;
 
 internal class PluginConfiguration: IPluginConfiguration {
 	public static class Defaults {

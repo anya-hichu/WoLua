@@ -2,9 +2,9 @@ using System;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
+using VariableVixen.WoLua.Constants;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 [MoonSharpHideMember(nameof(Equals))]

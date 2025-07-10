@@ -11,12 +11,12 @@ using ImGuiNET;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Serialization.Json;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Actions;
-using PrincessRTFM.WoLua.Lua.Api.Script;
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Actions;
+using VariableVixen.WoLua.Lua.Api.Script;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api;
+namespace VariableVixen.WoLua.Lua.Api;
 
 // This API is for all for everything that doesn't relate to the actual game itself.
 // It also contains script-specific and per-script functionality, like persistent storage.
@@ -55,6 +55,8 @@ public class ScriptApi: ApiBase {
 	public DebugApi Debug { get; private set; } = null!;
 
 	public KeysApi Keys { get; private set; } = null!;
+
+	public ScriptWindowApi DisplayWindow { get; private set; } = null!;
 
 	#endregion
 
@@ -244,7 +246,7 @@ public class ScriptApi: ApiBase {
 	[return: LuaDoc("The resulting JSON object/array as a string")]
 	public string SerialiseJson(Table content) {
 		this.Owner.CleanTable(content);
-		string json = JsonTableConverter.TableToJson(content);
+		string json = content.TableToJson();
 		this.Log(json, LogTag.JsonDump);
 		return json;
 	}
@@ -310,7 +312,7 @@ public class ScriptApi: ApiBase {
 			this.Log($"Registered on-execute function [{ToUsefulString(func, true)}]", LogTag.CallbackRegistration);
 		}
 		else {
-			string descriptor = func.Type.ToString() + (func.Type is DataType.UserData ? ("(" + (func.UserData.Object is null ? "static unknown" : func.UserData.Object.GetType().FullName) + ")") : "");
+			string descriptor = func.Type.ToString() + (func.Type is DataType.UserData ? "(" + (func.UserData.Object is null ? "static unknown" : func.UserData.Object.GetType().FullName) + ")" : "");
 			this.Log($"Got a {descriptor} instead of a function", LogTag.CallbackRegistration);
 			throw new ScriptRuntimeException("The provided value to Script() must be function to run when the script is called");
 		}

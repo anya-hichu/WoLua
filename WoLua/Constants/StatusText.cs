@@ -1,7 +1,7 @@
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 
-namespace PrincessRTFM.WoLua.Constants;
+namespace VariableVixen.WoLua.Constants;
 
 public static class StatusText {
 	public static string IconScripts { get; } = SeIconChar.CrossWorld.ToIconString();

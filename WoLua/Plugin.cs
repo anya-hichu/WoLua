@@ -18,13 +18,13 @@ using Lumina.Excel.Sheets;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Platforms;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua;
-using PrincessRTFM.WoLua.Lua.Api.Game;
-using PrincessRTFM.WoLua.Ui;
-using PrincessRTFM.WoLua.Ui.Chat;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua;
+using VariableVixen.WoLua.Lua.Api.Game;
+using VariableVixen.WoLua.Ui;
+using VariableVixen.WoLua.Ui.Chat;
 
-namespace PrincessRTFM.WoLua;
+namespace VariableVixen.WoLua;
 
 public class Plugin: IDalamudPlugin {
 	public const InteropAccessMode TypeRegistrationMode = InteropAccessMode.BackgroundOptimized;
@@ -80,7 +80,7 @@ public class Plugin: IDalamudPlugin {
 		this.Windows.AddWindow(this.debugWindow);
 
 		Service.Interface.UiBuilder.OpenConfigUi += this.ToggleConfigUi;
-		Service.Interface.UiBuilder.Draw += this.Windows.Draw;
+		Service.Interface.UiBuilder.Draw += this.Draw;
 
 		Task.Run(this.delayedPluginSetup);
 	}
@@ -94,6 +94,13 @@ public class Plugin: IDalamudPlugin {
 	}
 
 	#endregion
+
+	public void Draw() {
+		this.Windows.Draw();
+
+		foreach (ScriptContainer script in Service.ScriptManager.Scripts)
+			script?.ScriptApi?.DisplayWindow?.Draw();
+	}
 
 	public void ToggleConfigUi() {
 		if (this.disposed)

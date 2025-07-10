@@ -4,9 +4,12 @@ using ImGuiNET;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Lua;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Script;
+using VariableVixen.WoLua.Lua.Api;
+
+namespace VariableVixen.WoLua.Lua.Api.Script;
 
 [MoonSharpUserData]
 [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Documentation generation only reflects instance members")]

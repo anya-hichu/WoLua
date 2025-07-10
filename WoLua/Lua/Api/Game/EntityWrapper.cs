@@ -11,14 +11,15 @@ using Lumina.Excel.Sheets;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Lua.Docs;
+
+using VariableVixen.WoLua.Constants;
 
 using CharacterData = FFXIVClientStructs.FFXIV.Client.Game.Character.CharacterData;
 using NativeCharacter = FFXIVClientStructs.FFXIV.Client.Game.Character.Character;
 using NativeGameObject = FFXIVClientStructs.FFXIV.Client.Game.Object.GameObject;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 [MoonSharpHideMember(nameof(Entity))]
@@ -104,10 +105,10 @@ public sealed record class EntityWrapper(IGameObject? Entity): IWorldObjectWrapp
 	public unsafe bool? IsGendered => this ? (this.IsMale ?? false) || (this.IsFemale ?? false) : null;
 
 	public string? MF(string male, string female) => this.MFN(male, female, null!);
-	public string? MFN(string male, string female, string neither) => this ? (this.IsGendered ?? false) ? (this.IsMale ?? false) ? male : female : neither : null;
+	public string? MFN(string male, string female, string neither) => this ? this.IsGendered ?? false ? this.IsMale ?? false ? male : female : neither : null;
 
 	public DynValue MF(DynValue male, DynValue female) => this.MFN(male, female, DynValue.Nil);
-	public DynValue MFN(DynValue male, DynValue female, DynValue neither) => this ? (this.IsGendered ?? false) ? (this.IsMale ?? false) ? male : female : neither : DynValue.Nil;
+	public DynValue MFN(DynValue male, DynValue female, DynValue neither) => this ? this.IsGendered ?? false ? this.IsMale ?? false ? male : female : neither : DynValue.Nil;
 
 	#endregion
 

@@ -9,10 +9,11 @@ using ImGuiNET;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Lua;
-using PrincessRTFM.WoLua.Lua.Api;
+using VariableVixen.WoLua.Lua;
 
-namespace PrincessRTFM.WoLua.Ui;
+using VariableVixen.WoLua.Lua.Api;
+
+namespace VariableVixen.WoLua.Ui;
 
 internal class DebugWindow: BaseWindow {
 	public const ImGuiWindowFlags CreationFlags = ImGuiWindowFlags.None
@@ -130,7 +131,7 @@ internal class DebugWindow: BaseWindow {
 			ImGui.Spacing();
 
 			if (script.Ready) {
-				ImGui.PushTextWrapPos(Width - (ImGui.GetStyle().WindowPadding.X * 2));
+				ImGui.PushTextWrapPos(Width - ImGui.GetStyle().WindowPadding.X * 2);
 
 				Textline("Globals:", 0);
 				ImGui.Indent();

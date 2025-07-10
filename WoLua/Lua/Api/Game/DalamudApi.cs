@@ -5,9 +5,13 @@ using Dalamud.Plugin;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Lua;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+using VariableVixen.WoLua;
+using VariableVixen.WoLua.Lua.Api;
+
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 public class DalamudApi: ApiBase {

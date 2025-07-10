@@ -14,10 +14,10 @@ using Lumina.Excel.Sheets;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Docs;
 
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Documentation generation only reflects instance members")]
@@ -278,14 +278,14 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 	[LuaPlayerDoc("Whether the current character is performing crafting.")]
 	public bool? Crafting => this.Loaded
 		? Service.Condition[ConditionFlag.Crafting]
-		|| Service.Condition[ConditionFlag.Crafting40]
+		|| Service.Condition[ConditionFlag.ExecutingCraftingAction]
 		|| Service.Condition[ConditionFlag.PreparingToCraft]
 		: null;
 
 	[LuaPlayerDoc("Whether the current character is engaged with a gathering node.")]
 	public bool? Gathering => this.Loaded
 		? Service.Condition[ConditionFlag.Gathering]
-		|| Service.Condition[ConditionFlag.Gathering42]
+		|| Service.Condition[ConditionFlag.ExecutingGatheringAction]
 		: null;
 
 	[LuaPlayerDoc("Whether the current character is actively fishing.")]
@@ -354,7 +354,7 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 
 	[LuaPlayerDoc("Whether the current character is using a fashion accessory, such as a parasol or set of wings.")]
 	public bool? UsingFashionAccessory => this.Loaded
-		? Service.Condition[ConditionFlag.UsingParasol]
+		? Service.Condition[ConditionFlag.UsingFashionAccessory]
 		: null;
 
 	[LuaPlayerDoc("Whether the current character has their weapon drawn.")]
@@ -363,7 +363,7 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 		: null;
 
 	[LuaPlayerDoc("Whether the game considers the current character to be in motion.")]
-	public unsafe bool Moving => AgentMap.Instance() is not null && AgentMap.Instance()->IsPlayerMoving > 0;
+	public unsafe bool Moving => AgentMap.Instance() is not null && AgentMap.Instance()->IsPlayerMoving;
 
 	#endregion
 
@@ -516,7 +516,7 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 			return null;
 		}
 		UIState* uiState = UIState.Instance();
-		if (uiState is null || (IntPtr)uiState == IntPtr.Zero) {
+		if (uiState is null || (nint)uiState == nint.Zero) {
 			this.Log("UIState is null", LogTag.Emotes);
 			return null;
 		}

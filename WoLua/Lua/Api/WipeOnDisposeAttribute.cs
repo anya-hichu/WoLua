@@ -1,6 +1,6 @@
 using System;
 
-namespace PrincessRTFM.WoLua.Lua.Api;
+namespace VariableVixen.WoLua.Lua.Api;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
 internal class WipeOnDisposeAttribute: Attribute {

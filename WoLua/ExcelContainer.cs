@@ -4,10 +4,10 @@ using System.Threading;
 using Lumina.Excel;
 using Lumina.Excel.Sheets;
 
-namespace PrincessRTFM.WoLua;
+namespace VariableVixen.WoLua;
 
 public static class ExcelContainer {
-	private static Lazy<ExcelSheet<T>> init<T>() where T: struct, IExcelRow<T> {
+	private static Lazy<ExcelSheet<T>> init<T>() where T : struct, IExcelRow<T> {
 		return new(() => {
 			if (Service.DataManager is null)
 				throw new InvalidOperationException("Cannot load excel sheet without DataManager instance", new NullReferenceException("Service.DataManager does not exist"));

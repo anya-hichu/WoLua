@@ -1,8 +1,10 @@
 using System;
 
-using PrincessRTFM.WoLua.Constants;
+using VariableVixen.WoLua.Lua;
 
-namespace PrincessRTFM.WoLua.Lua.Actions;
+using VariableVixen.WoLua.Constants;
+
+namespace VariableVixen.WoLua.Lua.Actions;
 
 public class PauseAction: ScriptAction {
 	public uint Delay { get; }

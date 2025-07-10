@@ -1,4 +1,4 @@
-namespace PrincessRTFM.WoLua.Lua.Api.Game;
+namespace VariableVixen.WoLua.Lua.Api.Game;
 
 public interface IWorldObjectWrapper {
 	public bool Exists { get; }

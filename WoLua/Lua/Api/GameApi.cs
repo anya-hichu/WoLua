@@ -2,20 +2,18 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using Dalamud.Game.ClientState.Objects.Types;
-
 using FFXIVClientStructs.FFXIV.Client.Graphics.Environment;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 
 using MoonSharp.Interpreter;
 
-using PrincessRTFM.WoLua.Constants;
-using PrincessRTFM.WoLua.Game;
-using PrincessRTFM.WoLua.Lua.Api.Game;
-using PrincessRTFM.WoLua.Lua.Docs;
-using PrincessRTFM.WoLua.Ui.Chat;
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Game;
+using VariableVixen.WoLua.Lua.Api.Game;
+using VariableVixen.WoLua.Lua.Docs;
+using VariableVixen.WoLua.Ui.Chat;
 
-namespace PrincessRTFM.WoLua.Lua.Api;
+namespace VariableVixen.WoLua.Lua.Api;
 
 // This API is for everything pertaining to the actual game, including holding more specific APIs.
 [MoonSharpUserData]
@@ -126,7 +124,7 @@ public class GameApi: ApiBase {
 	public unsafe bool HasMapFlag {
 		get {
 			AgentMap* map = AgentMap.Instance();
-			return map is not null && map->IsFlagMarkerSet > 0;
+			return map is not null && map->IsFlagMarkerSet;
 		}
 	}
 
@@ -134,7 +132,7 @@ public class GameApi: ApiBase {
 	public unsafe void ClearMapFlag() {
 		AgentMap* map = AgentMap.Instance();
 		if (map is not null)
-			map->IsFlagMarkerSet = 0;
+			map->IsFlagMarkerSet = false;
 	}
 
 	[LuaDoc("Sets the player's custom map flag marker to the given x/y coordinates in the current zone.",
@@ -144,7 +142,7 @@ public class GameApi: ApiBase {
 		AgentMap* map = AgentMap.Instance();
 		if (map is null)
 			return;
-		map->IsFlagMarkerSet = 0;
+		map->IsFlagMarkerSet = false;
 		map->SetFlagMapMarker(map->CurrentTerritoryId, map->CurrentMapId, x, y);
 	}
 
