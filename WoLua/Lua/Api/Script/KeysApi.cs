@@ -1,13 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 using MoonSharp.Interpreter;
 
-using VariableVixen.WoLua.Lua;
 using VariableVixen.WoLua.Lua.Docs;
-
-using VariableVixen.WoLua.Lua.Api;
 
 namespace VariableVixen.WoLua.Lua.Api.Script;
 

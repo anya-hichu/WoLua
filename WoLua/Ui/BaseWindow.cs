@@ -1,10 +1,9 @@
 using System.Diagnostics;
 using System.Numerics;
 
+using Dalamud.Bindings.ImGui;
 using Dalamud.Interface;
 using Dalamud.Interface.Windowing;
-
-using ImGuiNET;
 
 namespace VariableVixen.WoLua.Ui;
 
@@ -44,7 +43,7 @@ internal abstract class BaseWindow: Window {
 
 	protected static void Centred(string text, uint spacing = 1) {
 		float width = ImGui.CalcTextSize(text).X;
-		float offset = ImGui.GetContentRegionAvail().X / 2 - width / 2;
+		float offset = (ImGui.GetContentRegionAvail().X / 2) - (width / 2);
 		ImGui.SetCursorPosX(offset);
 		Textline(text, spacing);
 	}

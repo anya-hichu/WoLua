@@ -59,7 +59,7 @@ internal class Service {
 		Hooks = new();
 		StatusLine = DtrBar.Get($"{Plugin.Name} status", StatusText.Initialising);
 		StatusLine.Tooltip = StatusText.TooltipInitialising;
-		StatusLine.OnClick = ScriptManager.Rescan;
+		StatusLine.OnClick = (DtrInteractionEvent _) => ScriptManager.Rescan();
 		StatusLine.Shown = true;
 	}
 }

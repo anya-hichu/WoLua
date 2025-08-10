@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
+using Dalamud.Bindings.ImGui;
 using Dalamud.Plugin;
-
-using ImGuiNET;
 
 using MoonSharp.Interpreter;
 
 using VariableVixen.WoLua.Lua;
-
 using VariableVixen.WoLua.Lua.Api;
 
 namespace VariableVixen.WoLua.Ui;
@@ -131,7 +129,7 @@ internal class DebugWindow: BaseWindow {
 			ImGui.Spacing();
 
 			if (script.Ready) {
-				ImGui.PushTextWrapPos(Width - ImGui.GetStyle().WindowPadding.X * 2);
+				ImGui.PushTextWrapPos(Width - (ImGui.GetStyle().WindowPadding.X * 2));
 
 				Textline("Globals:", 0);
 				ImGui.Indent();

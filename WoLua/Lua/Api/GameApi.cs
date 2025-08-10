@@ -124,7 +124,7 @@ public class GameApi: ApiBase {
 	public unsafe bool HasMapFlag {
 		get {
 			AgentMap* map = AgentMap.Instance();
-			return map is not null && map->IsFlagMarkerSet;
+			return map is not null && map->FlagMarkerCount > 0;
 		}
 	}
 
@@ -132,7 +132,7 @@ public class GameApi: ApiBase {
 	public unsafe void ClearMapFlag() {
 		AgentMap* map = AgentMap.Instance();
 		if (map is not null)
-			map->IsFlagMarkerSet = false;
+			map->FlagMarkerCount = 0;
 	}
 
 	[LuaDoc("Sets the player's custom map flag marker to the given x/y coordinates in the current zone.",
@@ -142,7 +142,7 @@ public class GameApi: ApiBase {
 		AgentMap* map = AgentMap.Instance();
 		if (map is null)
 			return;
-		map->IsFlagMarkerSet = false;
+		map->FlagMarkerCount = 0;
 		map->SetFlagMapMarker(map->CurrentTerritoryId, map->CurrentMapId, x, y);
 	}
 

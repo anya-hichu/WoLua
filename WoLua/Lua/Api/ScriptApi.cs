@@ -4,9 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 
+using Dalamud.Bindings.ImGui;
 using Dalamud.Interface.ImGuiNotification;
-
-using ImGuiNET;
 
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Serialization.Json;
