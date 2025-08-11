@@ -3,12 +3,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using FFXIVClientStructs.FFXIV.Client.Graphics.Environment;
+using FFXIVClientStructs.FFXIV.Client.UI;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 
 using MoonSharp.Interpreter;
 
 using VariableVixen.WoLua.Constants;
-using VariableVixen.WoLua.Game;
 using VariableVixen.WoLua.Lua.Api.Game;
 using VariableVixen.WoLua.Lua.Docs;
 using VariableVixen.WoLua.Ui.Chat;
@@ -75,10 +75,9 @@ public class GameApi: ApiBase {
 		if (this.Disposed)
 			return;
 
-		string cleaned = Service.ServerChat.SanitiseText(chatline);
-		if (!string.IsNullOrWhiteSpace(cleaned)) {
-			this.Log(cleaned, LogTag.ServerChat);
-			Service.ServerChat.SendMessage(cleaned);
+		if (!string.IsNullOrWhiteSpace(chatline)) {
+			this.Log(chatline, LogTag.ServerChat);
+			Service.ServerChat.SendMessage(chatline);
 		}
 	}
 	#endregion
@@ -161,12 +160,10 @@ public class GameApi: ApiBase {
 		if (this.Disposed)
 			return null;
 
-		if (!Service.Sounds.Valid)
-			return null;
-		Sound sound = SoundsExtensions.FromGameIndex(id);
-		if (sound.IsSound())
-			Service.Sounds.Play(sound);
-		return sound.IsSound();
+		if (id is < 1 or > 16)
+			return false;
+		UIGlobals.PlayChatSoundEffect((uint)id);
+		return true;
 	}
 
 	[LuaDoc("Returns an object holding the current Eorzean time as separate hours and minutes.")]

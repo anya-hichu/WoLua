@@ -32,7 +32,7 @@ public abstract class GameFunctionBase<T> where T : Delegate {
 			Service.Log.Information($"[{LogTag.PluginCore}] {this.GetType().Name} loaded; address = 0x{this.Address.ToInt64():X16}, base memory offset = 0x{totalOffset:X16}");
 		}
 		else {
-			Service.Log.Warning($"[{LogTag.PluginCore}] {this.GetType().Name} FAILED, could not find address from signature: ${sig.ToUpper()}");
+			Service.Log.Warning($"[{LogTag.PluginCore}] {this.GetType().Name} loading FAILED, could not find address from signature: {sig.ToUpper()}");
 		}
 	}
 	[SuppressMessage("Reliability", "CA2020:Prevent from behavioral change", Justification = "If this explodes, we SHOULD be throwing")]

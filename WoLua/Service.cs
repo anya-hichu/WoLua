@@ -40,7 +40,6 @@ internal class Service {
 	[PluginService] public static IToastGui Toast { get; private set; } = null!;
 	[PluginService] public static INotificationManager Notifications { get; private set; } = null!;
 
-	public static PlaySound Sounds { get; internal set; } = null!;
 	public static Hooks Hooks { get; internal set; } = null!;
 	public static IDtrBarEntry StatusLine { get; private set; } = null!;
 	public static SingleExecutionTask DocumentationGenerator { get; private set; } = null!;
@@ -52,14 +51,13 @@ internal class Service {
 		//Common = new(Interface);
 		//ServerChat = Common.Functions.Chat;
 		// XivCommon isn't updated yet, so we're ripping the chat functionality locally
-		ServerChat = new(Scanner);
+		ServerChat = new();
 		DocumentationGenerator = new(() => LuadocGenerator.WriteLuaDocs());
 		ScriptManager = new();
-		Sounds = new();
 		Hooks = new();
 		StatusLine = DtrBar.Get($"{Plugin.Name} status", StatusText.Initialising);
 		StatusLine.Tooltip = StatusText.TooltipInitialising;
-		StatusLine.OnClick = (DtrInteractionEvent _) => ScriptManager.Rescan();
+		StatusLine.OnClick = _ => ScriptManager.Rescan();
 		StatusLine.Shown = true;
 	}
 }
