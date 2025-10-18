@@ -10,8 +10,7 @@ namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
 [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "It doesn't matter")]
-public class ToastApi: ApiBase { // TODO luadoc all of this
-	internal ToastApi(ScriptContainer source) : base(source) { }
+public class ToastApi(ScriptContainer source): ApiBase(source) { // TODO luadoc all of this
 
 	public void Short(string text) {
 		if (this.Disposed)
@@ -45,9 +44,7 @@ public class ToastApi: ApiBase { // TODO luadoc all of this
 
 		Service.Toast.ShowQuest(text, new QuestToastOptions() { IconId = icon, PlaySound = !silent });
 	}
-	public void TaskComplete(string text)
-		=> this.TaskComplete(text, false);
-	public void TaskComplete(string text, uint icon)
-		=> this.TaskComplete(text, icon, false);
+	public void TaskComplete(string text) => this.TaskComplete(text, false);
+	public void TaskComplete(string text, uint icon) => this.TaskComplete(text, icon, false);
 
 }

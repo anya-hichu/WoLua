@@ -4,23 +4,13 @@ using System.Linq;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Serialization.Json;
 
-using VariableVixen.WoLua.Lua;
-using VariableVixen.WoLua.Lua.Docs;
-
-using VariableVixen.WoLua;
 using VariableVixen.WoLua.Constants;
-using VariableVixen.WoLua.Lua.Api;
+using VariableVixen.WoLua.Lua.Docs;
 
 namespace VariableVixen.WoLua.Lua.Api.Script;
 
 [MoonSharpUserData]
-public class DebugApi: ApiBase {
-	#region Non-API functionality
-
-	[MoonSharpHidden]
-	internal DebugApi(ScriptContainer source) : base(source) { }
-
-	#endregion
+public class DebugApi(ScriptContainer source): ApiBase(source) {
 
 	// Debug builds force scripts to run with debug mode enabled, because if you're running a debug build it's assumed you're debugging things
 	[LuaDoc("Whether or not this script is running in debug mode. Debug output will only be produced if this is enabled.",

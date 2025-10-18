@@ -10,8 +10,7 @@ namespace VariableVixen.WoLua.Lua.Api.Script;
 
 [MoonSharpUserData]
 [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Documentation generation only reflects instance members")]
-public class KeysApi: ApiBase {
-	public KeysApi(ScriptContainer source) : base(source) { }
+public class KeysApi(ScriptContainer source): ApiBase(source) {
 
 	[LuaDoc("Whether a control key is currently down.")]
 	public bool Control
