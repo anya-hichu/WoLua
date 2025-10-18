@@ -7,9 +7,7 @@ using System.Text.RegularExpressions;
 
 using MoonSharp.Interpreter;
 
-using VariableVixen.WoLua;
 using VariableVixen.WoLua.Constants;
-using VariableVixen.WoLua.Lua;
 using VariableVixen.WoLua.Lua.Api;
 using VariableVixen.WoLua.Ui.Chat;
 
@@ -135,23 +133,25 @@ public sealed partial class ScriptContainer: IDisposable {
 		Type self = this.GetType();
 		Type[] ctorTypes = [self];
 		object?[] ctorParams = [this];
-		PropertyInfo[] scriptGlobals = self
+		IEnumerable<PropertyInfo> scriptGlobals = self
 			.GetProperties(BindingFlags.Instance | BindingFlags.Public)
-			.Where(p => p.PropertyType.IsAssignableTo(apiBase) && !p.PropertyType.IsAbstract && p.GetCustomAttribute<LuaGlobalAttribute>() is not null)
-			.ToArray();
+			.Where(p => p.PropertyType.IsAssignableTo(apiBase) && !p.PropertyType.IsAbstract);
+		List<ApiBase> constructed = [];
 
 		foreach (PropertyInfo p in scriptGlobals) {
-			LuaGlobalAttribute g = p.GetCustomAttribute<LuaGlobalAttribute>()!;
+			LuaGlobalAttribute? g = p.GetCustomAttribute<LuaGlobalAttribute>();
+			if (g is null)
+				continue;
+			this.Log($"Constructing {p.PropertyType.Name} instance for {p.Name} property", LogTag.ScriptLoader, true);
 			ConstructorInfo ci = p.PropertyType.GetConstructor(ctorTypes)!;
 			ApiBase o = (ApiBase)ci!.Invoke(ctorParams);
 			p.SetValue(this, o);
-			this.Engine.Globals[g.Name] = o;
 			o.Init();
+			this.Engine.Globals[g.Name] = o;
+			constructed.Add(o);
 		}
-		foreach (PropertyInfo p in scriptGlobals) {
-			ApiBase o = (ApiBase)p.GetValue(this)!;
+		foreach (ApiBase o in constructed)
 			o.PostInit();
-		}
 
 		try {
 			this.Engine.DoFile(this.SourceFile);
