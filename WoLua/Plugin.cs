@@ -97,9 +97,7 @@ public class Plugin: IDalamudPlugin {
 
 	public void Draw() {
 		this.Windows.Draw();
-
-		foreach (ScriptContainer script in Service.ScriptManager.Scripts)
-			script?.ScriptApi?.DisplayWindow?.Draw();
+		Service.ScriptManager.DrawScriptWindows();
 	}
 
 	public void ToggleConfigUi() {

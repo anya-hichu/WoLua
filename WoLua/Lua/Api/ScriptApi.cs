@@ -13,6 +13,7 @@ using MoonSharp.Interpreter.Serialization.Json;
 using VariableVixen.WoLua.Constants;
 using VariableVixen.WoLua.Lua.Actions;
 using VariableVixen.WoLua.Lua.Api.Script;
+using VariableVixen.WoLua.Lua.Api.Script.Ui;
 using VariableVixen.WoLua.Lua.Docs;
 
 namespace VariableVixen.WoLua.Lua.Api;
@@ -55,7 +56,7 @@ public class ScriptApi: ApiBase {
 
 	public KeysApi Keys { get; private set; } = null!;
 
-	public ScriptWindowApi DisplayWindow { get; private set; } = null!;
+	public ScriptUiNamespaceApi Ui { get; private set; } = null!;
 
 	#endregion
 

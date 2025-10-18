@@ -16,6 +16,7 @@ public static class LogTag {
 		DebugMessage = "DEBUG",
 		ScriptInput = "INPUT",
 		ScriptStorage = "STORAGE",
+		ScriptWindow = "SCRIPTWINDOW",
 		LocalChat = "LOCALCHAT",
 		ServerChat = "SERVERCHAT",
 		Emotes = "EMOTE",

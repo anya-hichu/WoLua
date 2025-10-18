@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
+using Dalamud.Interface.Windowing;
+
 using VariableVixen.WoLua.Constants;
 using VariableVixen.WoLua.Lua;
 
@@ -11,6 +13,7 @@ namespace VariableVixen.WoLua;
 
 public class ScriptManager: IDisposable {
 	private ConcurrentDictionary<string, ScriptContainer> loadedScripts { get; } = new();
+	private readonly WindowSystem scriptWindows = new("ScriptWindow");
 	private SingleExecutionTask scriptScanner { get; init; } = null!;
 
 	internal ScriptManager() => this.scriptScanner = new(this.scanScripts);
@@ -70,6 +73,7 @@ public class ScriptManager: IDisposable {
 
 	internal void ClearAllScripts() {
 		using MethodTimer logtimer = new();
+		this.scriptWindows.RemoveAllWindows();
 
 		Service.Log.Information($"[{LogTag.PluginCore}] Disposing all loaded scripts");
 		ScriptContainer[] scripts = this.loadedScripts.Values?.ToArray() ?? [];
@@ -79,6 +83,8 @@ public class ScriptManager: IDisposable {
 		Service.Log.Information($"[{LogTag.PluginCore}] Clearing all loaded scripts");
 		this.loadedScripts.Clear();
 	}
+
+	internal void DrawScriptWindows() => this.scriptWindows.Draw();
 
 	#endregion
 
@@ -129,7 +135,9 @@ public class ScriptManager: IDisposable {
 						if (!script.RegisterCommand())
 							Service.Plugin.Error($"Unable to register //{script.InternalName} - is it already in use?");
 					}
-					if (!script.Ready)
+					if (script.Ready)
+						this.scriptWindows.AddWindow(script.ScriptApi.Ui.Window.ScriptWindow);
+					else
 						Service.Log.Error($"[{LogTag.ScriptLoader}:{slug}] Script does not have a registered callback!");
 				}
 				catch (Exception e) {
