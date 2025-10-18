@@ -63,8 +63,20 @@ public class ScriptWindowApi: ApiBase { // TODO: luadocs
 
 	public bool Empty => this.ScriptWindow.Empty;
 
+	public void ClearContent() {
+		this.ScriptWindow.content = [];
+		this.Owner.Log($"Cleared window contents", LogTag.ScriptWindow);
+	}
 	public void SetContent(List<DynValue> contents) {
 		this.ScriptWindow.content = contents.Select(ScriptWidgetApi.FromLuaValue).ToArray();
+		this.Owner.Log($"Set window content list to {this.ScriptWindow.content.Length} elements", LogTag.ScriptWindow);
+	}
+	public void AddContent(List<DynValue> contents) {
+		this.ScriptWindow.content = this.ScriptWindow.content.Concat(contents.Select(ScriptWidgetApi.FromLuaValue)).ToArray();
+		this.Owner.Log($"Set window content list to {this.ScriptWindow.content.Length} elements", LogTag.ScriptWindow);
+	}
+	public void PushContent(DynValue item) {
+		this.ScriptWindow.content = this.ScriptWindow.content.Append(ScriptWidgetApi.FromLuaValue(item)).ToArray();
 		this.Owner.Log($"Set window content list to {this.ScriptWindow.content.Length} elements", LogTag.ScriptWindow);
 	}
 

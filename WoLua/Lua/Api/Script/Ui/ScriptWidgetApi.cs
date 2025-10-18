@@ -22,6 +22,8 @@ public class ScriptWidgetApi(ScriptContainer source): ApiBase(source) { // TODO:
 
 	public CollapsableWidget CollapsableSection(string title, IDisplayWidget content) => new(title, content);
 	public CollapsableWidget CollapsableSection(string title, string content) => new(title, new TextWidget(content));
+	public CollapsableWidget Section(string title, IDisplayWidget content) => this.CollapsableSection(title, content);
+	public CollapsableWidget Section(string title, string content) => this.CollapsableSection(title, content);
 
 	public static IDisplayWidget FromLuaValue(DynValue dv) => dv.Type switch {
 		DataType.Boolean => new SeparatorWidget().SetBar(dv.Boolean),
