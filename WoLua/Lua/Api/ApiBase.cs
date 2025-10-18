@@ -7,10 +7,8 @@ using System.Reflection;
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Serialization.Json;
 
-using VariableVixen.WoLua.Lua;
-using VariableVixen.WoLua.Lua.Docs;
-
 using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Docs;
 using VariableVixen.WoLua.Ui.Chat;
 
 namespace VariableVixen.WoLua.Lua.Api;
@@ -43,7 +41,7 @@ public abstract class ApiBase: IDisposable {
 		this.DefaultMessageTag = me.Name.ToUpper();
 		this.disposables = me
 			.GetProperties(AllInstance)
-			.Where(p => p.PropertyType.IsAssignableTo(disposable) && p.CanRead)
+			.Where(p => p.PropertyType.IsAssignableTo(disposable) && p.CanRead && p.GetCustomAttribute<NoAutoDisposeAttribute>()?.Value is not true)
 			.ToArray();
 		this.wipeOnDispose = me
 			.GetProperties(AllInstance)
@@ -104,11 +102,7 @@ public abstract class ApiBase: IDisposable {
 	protected internal static string ToUsefulString(DynValue value, bool typed = false)
 		=> (typed ? $"{value.Type}: " : "")
 		+ value.Type switch {
-			//DataType.Nil => throw new System.NotImplementedException(),
 			DataType.Void => value.ToDebugPrintString(),
-			//DataType.Boolean => throw new System.NotImplementedException(),
-			//DataType.Number => throw new System.NotImplementedException(),
-			//DataType.String => throw new System.NotImplementedException(),
 			DataType.Function => $"luafunc #{value.Function.ReferenceID} @ 0x{value.Function.EntryPointByteCodeLocation:X8}",
 			DataType.Table => value.Table.TableToJson(),
 			DataType.Tuple => value.ToDebugPrintString(),
@@ -117,6 +111,10 @@ public abstract class ApiBase: IDisposable {
 			DataType.ClrFunction => $"function {value.Callback.Name}",
 			DataType.TailCallRequest => value.ToDebugPrintString(),
 			DataType.YieldRequest => value.ToDebugPrintString(),
+			//DataType.Nil => throw new System.NotImplementedException(),
+			//DataType.Boolean => throw new System.NotImplementedException(),
+			//DataType.Number => throw new System.NotImplementedException(),
+			//DataType.String => throw new System.NotImplementedException(),
 			_ => value.ToPrintString(),
 		};
 
@@ -142,18 +140,24 @@ public abstract class ApiBase: IDisposable {
 			return;
 		this.Disposed = true;
 
-		this.Owner.Log(this.GetType().Name, LogTag.Dispose, true);
+		string self = this.GetType().Name;
+		this.Owner.Log($"{self} disposing", LogTag.Dispose, true);
 
 		foreach (PropertyInfo disposable in this.disposables) {
+#if DEBUG
+			this.Owner.Log($"{self} -> {disposable.PropertyType.Name} (disposing {disposable.Name})", LogTag.Dispose, true);
+#endif
 			(disposable.GetValue(this) as IDisposable)?.Dispose();
-			if (disposable.CanWrite)
-				disposable.SetValue(this, null);
 		}
 
 		foreach (PropertyInfo item in this.wipeOnDispose) {
+#if DEBUG
+			this.Owner.Log($"{self} clearing {item.Name}", LogTag.Dispose, true);
+#endif
 			item.SetValue(this, null);
 		}
 
+		this.Owner.Log($"{self} disposed", LogTag.Dispose, true);
 		this.Owner = null!;
 	}
 
