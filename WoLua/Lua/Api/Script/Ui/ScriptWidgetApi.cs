@@ -12,8 +12,9 @@ public class ScriptWidgetApi(ScriptContainer source): ApiBase(source) { // TODO:
 
 	public TextWidget Text(string? text = null) => new(text);
 
-	public TextWidget Header(string? text = null) => this.Text(text).Center();
-	public TextWidget SubHeader(string? text = null) => this.Text(text).SetDim().Indent();
+	public TextWidget Centered(string? text = null) => this.Text(text).Center();
+
+	public TextWidget Subheader(string? text = null) => this.Text(text).SetDim().Indent();
 
 	public SeparatorWidget Separator() => new();
 	public SeparatorWidget Spacer() => this.Separator().SetBar(false);

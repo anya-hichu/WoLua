@@ -2,7 +2,7 @@
 <Project Sdk="Dalamud.NET.Sdk/13.1.0">
 	<PropertyGroup>
 		<Product>WoLua</Product>
-		<Version>3.9.0</Version>
+		<Version>4.0.0</Version>
 		<Description>Warrior of... Lua? Write your own chat commands in lua for FFXIV/Dalamud!</Description>
 		<Copyright>Copyleft VariableVixen 2022</Copyright>
 	</PropertyGroup>
