@@ -120,16 +120,21 @@ public class ScriptManager: IDisposable {
 				continue;
 			}
 			if (File.Exists(file)) {
-				Service.Log.Information($"[{LogTag.ScriptLoader}:{slug}] Loading {file}");
-				ScriptContainer script = new(file, name, slug);
-				Service.Log.Information($"[{LogTag.ScriptLoader}:{slug}] Registering script container for {slug}");
-				this.loadedScripts.TryAdd(slug, script);
-				if (direct && script.Active) {
-					if (!script.RegisterCommand())
-						Service.Plugin.Error($"Unable to register //{script.InternalName} - is it already in use?");
+				try {
+					Service.Log.Information($"[{LogTag.ScriptLoader}:{slug}] Loading {file}");
+					ScriptContainer script = new(file, name, slug);
+					Service.Log.Information($"[{LogTag.ScriptLoader}:{slug}] Registering script container for {slug}");
+					this.loadedScripts.TryAdd(slug, script);
+					if (direct && script.Active) {
+						if (!script.RegisterCommand())
+							Service.Plugin.Error($"Unable to register //{script.InternalName} - is it already in use?");
+					}
+					if (!script.Ready)
+						Service.Log.Error($"[{LogTag.ScriptLoader}:{slug}] Script does not have a registered callback!");
 				}
-				if (!script.Ready)
-					Service.Log.Error($"[{LogTag.ScriptLoader}:{slug}] Script does not have a registered callback!");
+				catch (Exception e) {
+					Service.Log.Error(e, $"Unexpected error loading script");
+				}
 			}
 			else {
 				Service.Log.Error($"[{LogTag.ScriptLoader}:{slug}] Cannot load script {name}, no initialisation file exists");

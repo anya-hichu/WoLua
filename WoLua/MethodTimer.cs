@@ -24,6 +24,9 @@ public sealed class MethodTimer: IDisposable {
 		}
 		this.label = $"{owner}.{method}({args})";
 		this.timer = Stopwatch.StartNew();
+#if DEBUG
+		Service.Log?.Information($"[{LogTag.MethodTiming}] {this.label} started");
+#endif
 	}
 	public void Dispose() {
 		this.timer.Stop();

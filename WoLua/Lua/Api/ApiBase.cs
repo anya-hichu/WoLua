@@ -56,10 +56,14 @@ public abstract class ApiBase: IDisposable {
 		object?[] ctorArgs = [source];
 		foreach (PropertyInfo p in autoAssign) {
 			ConstructorInfo? ctor = p.PropertyType.GetConstructor(AllInstance, ctorArgTypes);
-			if (ctor is null)
+			if (ctor is null) {
+				this.Log($"No valid constructor for {p.PropertyType.Name}, skipping auto-construction", LogTag.ScriptLoader, true);
 				continue;
-			if (ctor.Invoke(ctorArgs) is not ApiBase inject)
+			}
+			if (ctor.Invoke(ctorArgs) is not ApiBase inject) {
+				this.Log($"Constructor for {p.PropertyType.Name}({string.Join(", ", ctorArgTypes.Select(t => t.Name))}) did not return {apiBase.Name}", LogTag.ScriptLoader, true);
 				continue;
+			}
 			p.SetValue(this, inject);
 			this.Log($"Automatically injected {inject.GetType().Name} into {p.DeclaringType?.Name ?? me.Name}.{p.Name}", LogTag.ScriptLoader, true);
 		}
