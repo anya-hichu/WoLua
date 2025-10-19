@@ -39,7 +39,7 @@ internal class ScriptWindow: BaseWindow, IDisposable {
 	public override bool DrawConditions() => !this.disposed && !this.Empty;
 
 	public override void OnOpen() {
-		if (this.DefaultSize.Valid)
+		if (this.DefaultSize.Width > 0 && this.DefaultSize.Height > 0)
 			this.Size = this.DefaultSize;
 	}
 

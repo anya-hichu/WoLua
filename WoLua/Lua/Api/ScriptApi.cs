@@ -242,9 +242,9 @@ public class ScriptApi: ApiBase {
 
 	[LuaDoc("Serialises a lua table into a JSON object or array.",
 		"If the table's keys are numeric and contiguous, a JSON array will be produced. If not, it will be an object.",
-		"This method may also be called as SerializeJson (with a 'z' instead of 's') for the american spelling.")]
+		"This method may also be called as SerialiseJson (with 's' instead of 'z') for the non-american spelling.")]
 	[return: LuaDoc("The resulting JSON object/array as a string")]
-	public string SerialiseJson(Table content) {
+	public string SerializeJson(Table content) {
 		this.Owner.CleanTable(content);
 		string json = content.TableToJson();
 		this.Log(json, LogTag.JsonDump);
@@ -252,7 +252,7 @@ public class ScriptApi: ApiBase {
 	}
 
 	[SkipDoc("It's just a spelling variant of the above")]
-	public string SerializeJson(Table content) => this.SerialiseJson(content); // american spelling
+	public string SerialiseJson(Table content) => this.SerializeJson(content);
 
 	#endregion
 

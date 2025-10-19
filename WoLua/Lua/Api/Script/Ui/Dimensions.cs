@@ -1,27 +1,37 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
-using Dalamud.Bindings.ImGui;
-
 using MoonSharp.Interpreter;
+
+using VariableVixen.WoLua.Constants;
+using VariableVixen.WoLua.Lua.Docs;
 
 namespace VariableVixen.WoLua.Lua.Api.Script.Ui;
 
 [MoonSharpUserData]
 [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Documentation generation only reflects instance members")]
-public class Dimensions { // TODO: luadocs
+public class Dimensions {
 
 	public float Width { get; set; }
-	public void SetWidth(float width) => this.Width = width;
+	[LuaChainSetterDoc(nameof(Width))]
+	public Dimensions SetWidth(float width) {
+		this.Width = width;
+		return this;
+	}
 
 	public float Height { get; set; }
-	public void SetHeight(float height) => this.Height = height;
+	[LuaChainSetterDoc(nameof(Height))]
+	public Dimensions SetHeight(float height) {
+		this.Height = height;
+		return this;
+	}
 
-	public bool Valid => this.Width > 0 && this.Height > 0;
-
-	public void Set(float width, float height) {
+	[LuaDoc("This method sets both the width and height of this object, then returns the object for chaining.")]
+	[MoonSharpUserDataMetamethod(Metamethod.FunctionCall)]
+	public Dimensions Set(float width, float height) {
 		this.SetWidth(width);
 		this.SetHeight(height);
+		return this;
 	}
 
 	[MoonSharpHidden]

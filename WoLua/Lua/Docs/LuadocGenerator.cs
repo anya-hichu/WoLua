@@ -40,7 +40,7 @@ internal static class LuadocGenerator {
 		);
 		HashSet<Type> documented = [];
 
-		StringBuilder docs = new(1024 * 64); // the first run of the dumper produced ~20k, so 64k should be good for a bit
+		StringBuilder docs = new(1024 * 256); // I pick this number by looking at the size of the API dump and padding it some
 		docs.AppendLine("---@meta");
 		docs.AppendLine();
 		docs.AppendLine();
@@ -89,7 +89,7 @@ internal static class LuadocGenerator {
 		try {
 			string path = ApiDefinitionFilePath;
 			File.WriteAllText(path, contents);
-			Service.Plugin.Print($"Lua API reference written to {path}");
+			Service.Log.Info($"Lua API reference written to {path}");
 		}
 		catch (Exception e) {
 			Service.Plugin.Error("Failed to write lua API definition file", e);
@@ -119,6 +119,7 @@ internal static class LuadocGenerator {
 			.Where(m => !methodIsMeta(m));
 		IEnumerable<MethodInfo> metamethods = type
 			.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+			.Where(includeMemberInDocs)
 			.Where(methodIsMeta);
 
 		Service.Log.Info($"[{LogTag.GenerateDocs}] Documenting API type {type.Name}");
@@ -252,8 +253,8 @@ internal static class LuadocGenerator {
 				docs.Append($" # {retDetail.Description}");
 			docs.AppendLine();
 
-			if (m.GetCustomAttribute<ObsoleteAttribute>() is not null)
-				docs.AppendLine("---@deprecated");
+			if (m.GetCustomAttribute<ObsoleteAttribute>() is ObsoleteAttribute obsolete)
+				docs.AppendLine($"---@deprecated {obsolete.Message}");
 
 			docs.AppendLine($"function {table}.{m.Name}({string.Join(", ", parameters.Select((_, i) => getParamName(parameters, i)))}) end");
 			docs.AppendLine();
@@ -276,7 +277,9 @@ internal static class LuadocGenerator {
 			generatedName = result.LuaName(realType.Name);
 		}
 
+#if DEBUG
 		Service.Log.Info($"[{LogTag.GenerateDocs}] Translated C# type " + (realType == originalType ? realType.Name : $"Nullable<{realType.Name}>") + $" to lua type {(ushort)result} \"{generatedName}\"");
+#endif
 		return generatedName;
 	}
 }
