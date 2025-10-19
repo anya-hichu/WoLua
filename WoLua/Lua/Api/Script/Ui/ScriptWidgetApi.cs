@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using MoonSharp.Interpreter;
 
 using VariableVixen.WoLua.Lua.Api.Script.Ui.Widget;
+using VariableVixen.WoLua.Lua.Docs;
 
 namespace VariableVixen.WoLua.Lua.Api.Script.Ui;
 
@@ -13,6 +14,9 @@ public class ScriptWidgetApi(ScriptContainer source): ApiBase(source) { // TODO:
 	public TextWidget Text(string? text = null) => new(text);
 
 	public TextWidget Centered(string? text = null) => this.Text(text).Center();
+
+	[SkipDoc("spelling variant")]
+	public TextWidget Centred(string? text = null) => this.Centered(text);
 
 	public TextWidget Subheader(string? text = null) => this.Text(text).SetDim().Indent();
 
