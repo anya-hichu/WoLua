@@ -2,16 +2,12 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 
 using MoonSharp.Interpreter;
 
-using VariableVixen.WoLua.Lua;
-
 using VariableVixen.WoLua.Constants;
 
 namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
-public class ChocoboApi: ApiBase { // TODO luadoc all of this
-	[MoonSharpHidden]
-	internal ChocoboApi(ScriptContainer source) : base(source) { }
+public class ChocoboApi(ScriptContainer source): ApiBase(source) { // TODO luadoc all of this
 	private unsafe CompanionInfo? obj {
 		get {
 			UIState* ui = UIState.Instance();

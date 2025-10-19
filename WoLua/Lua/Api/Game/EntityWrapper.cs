@@ -41,7 +41,7 @@ public sealed record class EntityWrapper(IGameObject? Entity): IWorldObjectWrapp
 	public string? Type => this ? this.Entity!.ObjectKind.ToString() : null;
 
 	[MoonSharpUserDataMetamethod(Metamethod.Stringify)]
-	public override string ToString() => this ? $"{this.Type}[{this.Entity!.Name ?? string.Empty}]" : string.Empty;
+	public override string ToString() => this ? $"{this.Type}[{this.Name ?? string.Empty}]" : string.Empty;
 
 	public bool? Alive => this ? !this.Entity?.IsDead : null;
 

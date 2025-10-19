@@ -5,7 +5,7 @@ using VariableVixen.WoLua.Lua;
 namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
-public class PartyApi: ApiBase { // TODO luadoc all of this
+public class PartyApi: ApiBase {
 	public PartyApi(ScriptContainer source) : base(source) { }
 
 	public static implicit operator bool(PartyApi? party) => party?.InParty ?? false;

@@ -10,7 +10,7 @@ namespace VariableVixen.WoLua.Lua.Api.Game;
 [MoonSharpHideMember(nameof(Equals))]
 [MoonSharpHideMember("<Clone>$")]
 [MoonSharpHideMember(nameof(Deconstruct))]
-public sealed record class JobData(uint Id, string? Name, string? Abbreviation): IEquatable<JobData> { // TODO luadoc all of this
+public sealed record class JobData(uint Id, string? Name, string? Abbreviation): IEquatable<JobData> {
 	public const string
 		InvalidJobName = "adventurer",
 		InvalidJobAbbr = "ADV";

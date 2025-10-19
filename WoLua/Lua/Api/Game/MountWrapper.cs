@@ -13,7 +13,7 @@ namespace VariableVixen.WoLua.Lua.Api.Game;
 [MoonSharpUserData]
 [MoonSharpHideMember("<Clone>$")]
 [MoonSharpHideMember(nameof(Equals))]
-public sealed record class MountWrapper: IEquatable<MountWrapper> { // TODO luadoc all of this
+public sealed record class MountWrapper: IEquatable<MountWrapper> {
 	internal static readonly Dictionary<ushort, string> mountNames = [];
 	internal static readonly Dictionary<ushort, string> mountArticles = [];
 	internal static void LoadGameData() {
