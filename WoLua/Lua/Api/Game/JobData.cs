@@ -7,17 +7,15 @@ using VariableVixen.WoLua.Constants;
 namespace VariableVixen.WoLua.Lua.Api.Game;
 
 [MoonSharpUserData]
-[MoonSharpHideMember(nameof(Equals))]
 [MoonSharpHideMember("<Clone>$")]
 [MoonSharpHideMember(nameof(Deconstruct))]
 public sealed record class JobData(uint Id, string? Name, string? Abbreviation): IEquatable<JobData> {
 	public const string
 		InvalidJobName = "adventurer",
 		InvalidJobAbbr = "ADV";
-	public bool Equals(JobData? other)
-		=> this.Id == other?.Id;
-	public override int GetHashCode()
-		=> this.Id.GetHashCode();
+
+	[MoonSharpHidden] public bool Equals(JobData? other) => this.Id == other?.Id;
+	[MoonSharpHidden] public override int GetHashCode() => this.Id.GetHashCode();
 
 	public string? Abbr
 		=> this.Abbreviation;
@@ -32,11 +30,11 @@ public sealed record class JobData(uint Id, string? Name, string? Abbreviation):
 	public bool IsGatherer
 		=> this.Valid && this.Id is >= 16 and <= 18;
 	public bool IsMeleeDPS
-		=> this.Valid && this.Id is 2 or 4 or 20 or 22 or 29 or 30 or 34 or 39;
+		=> this.Valid && this.Id is 2 or 4 or 20 or 22 or 29 or 30 or 34 or 39 or 41;
 	public bool IsRangedDPS
 		=> this.Valid && this.Id is 5 or 23 or 31 or 38;
 	public bool IsMagicDPS
-		=> this.Valid && this.Id is 7 or 25 or 26 or 27 or 35;
+		=> this.Valid && this.Id is 7 or 25 or 26 or 27 or 35 or 42;
 	public bool IsHealer
 		=> this.Valid && this.Id is 6 or 24 or 28 or 33 or 40;
 	public bool IsTank
