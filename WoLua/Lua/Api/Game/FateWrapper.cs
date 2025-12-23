@@ -23,7 +23,7 @@ public sealed record class FateWrapper(Fate? WorldFate): IWorldObjectWrapper {
 	internal unsafe FateContext* Struct => this.Valid ? (FateContext*)this.WorldFate!.Address : null;
 
 	[LuaDoc("Whether this FATE is a valid object in the game's memory. If this is false, this wrapper is meaningless.")]
-	public bool Valid => this.WorldFate is Fate fate && Service.ClientState.LocalPlayer?.IsValid() is true;
+	public bool Valid => this.WorldFate is Fate fate && Service.Objects.LocalPlayer?.IsValid() is true;
 
 	[LuaDoc("Whether this FATE still exists in the world. This will be true if the FATE is valid and has not yet ended, even if it is WAITING to end.")]
 	public bool Exists => this.State is not (FateState.Ended or FateState.Failed);

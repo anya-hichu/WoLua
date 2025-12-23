@@ -33,12 +33,12 @@ public sealed record class WorldPosition(float? PosX, float? PosY, float? PosZ):
 	public float? FlatDistanceFrom([AsLuaType("EntityWrapper|FateWrapper|PlayerApi|WorldPosition")] IWorldObjectWrapper? other) => this && other?.Exists is true
 		? Vector2.Distance(this, other.Position)
 		: null;
-	public float? FlatDistance => this.FlatDistanceFrom(FromGameObject(Service.ClientState.LocalPlayer));
+	public float? FlatDistance => this.FlatDistanceFrom(FromGameObject(Service.Objects.LocalPlayer));
 
 	public float? DistanceFrom([AsLuaType("EntityWrapper|FateWrapper|PlayerApi|WorldPosition")] IWorldObjectWrapper? other) => this && other?.Exists is true
 		? Vector3.Distance(this.GameEnginePosition, other!.Position.GameEnginePosition)
 		: null;
-	public float? Distance => this.DistanceFrom(FromGameObject(Service.ClientState.LocalPlayer));
+	public float? Distance => this.DistanceFrom(FromGameObject(Service.Objects.LocalPlayer));
 
 	internal Vector3? UiCoords {
 		get {

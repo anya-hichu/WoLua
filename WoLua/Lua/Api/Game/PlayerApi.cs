@@ -30,8 +30,8 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 		"If you aren't logged in, this will be `false`.",
 		"If this is `false`, then all player properties will be `nil`.")]
 	public bool Loaded => !this.Disposed
-		&& Service.ClientState.LocalPlayer is not null
-		&& Service.ClientState.LocalContentId is not 0;
+		&& Service.Objects.LocalPlayer is not null
+		&& Service.PlayerState.ContentId is not 0;
 	public static implicit operator bool(PlayerApi? player) => player?.Loaded ?? false;
 
 	[LuaDoc("An alternative name for `.Loaded`, to match that used by entity wrappers.")]
@@ -39,14 +39,14 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 
 	[LuaPlayerDoc("This is the _universally unique_ ID of the character currently logged in.")]
 	public ulong? CharacterId => this.Loaded
-		? Service.ClientState.LocalContentId
+		? Service.PlayerState.ContentId
 		: null;
 
 	[LuaDoc("This provides an `EntityWrapper` wrapper object around the currently-logged-in player (or around nothing) _at the time of access_.",
 		"If you cache this, it may become invalid, such as if the player logs out.",
 		"It is recommended that you only cache this in a function-local variable, and not rely on it remaining valid between execution frames, especially if you use the action queue.",
 		"This value itself will _never_ be `nil`, but _will_ represent a nonexistent/invalid game entity if the `Loaded` property is `false`.")]
-	public EntityWrapper Entity => new(this ? Service.ClientState.LocalPlayer : null);
+	public EntityWrapper Entity => new(this ? Service.Objects.LocalPlayer : null);
 
 	[LuaDoc("This provides a `MountData` wrapper object around the currently-logged-in player's mount (or around nothing) _at the time of access_.",
 		"If you cache this, it may become invalid, such as if the player logs out, changes mounts, or dismounts entirely.",
@@ -61,7 +61,7 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 		"Per FFXIV name formatting, it will contain the first name, a single space, and the last name.",
 		"See also the `Firstname` and `Lastname` properties.")]
 	public string? Name => this.Loaded
-		? Service.ClientState.LocalPlayer!.Name!.TextValue
+		? Service.Objects.LocalPlayer!.Name!.TextValue
 		: null;
 
 	[LuaPlayerDoc("This is the first name (and only the first name) of the current character.",
@@ -269,7 +269,7 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 	[LuaPlayerDoc("Whether the current character is engaged in combat, which restricts certain actions.")]
 	public bool? InCombat => this.Loaded
 		? Service.Condition[ConditionFlag.InCombat]
-		|| Service.ClientState.LocalPlayer!.StatusFlags.HasFlag(StatusFlags.InCombat)
+		|| Service.Objects.LocalPlayer!.StatusFlags.HasFlag(StatusFlags.InCombat)
 		: null;
 
 	[LuaPlayerDoc("Whether the currect character is presently mounted. It may not be their own mount.")]
@@ -302,7 +302,7 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 	public bool? Casting => this.Loaded
 		? Service.Condition[ConditionFlag.Casting]
 		|| Service.Condition[ConditionFlag.Casting87]
-		|| Service.ClientState.LocalPlayer!.StatusFlags.HasFlag(StatusFlags.IsCasting)
+		|| Service.Objects.LocalPlayer!.StatusFlags.HasFlag(StatusFlags.IsCasting)
 		: null;
 
 	[LuaPlayerDoc("Whether the current character is watching a cutscene. Some commands are not available during cutscenes.")]
@@ -359,7 +359,7 @@ public class PlayerApi: ApiBase, IWorldObjectWrapper {
 
 	[LuaPlayerDoc("Whether the current character has their weapon drawn.")]
 	public bool? WeaponDrawn => this.Loaded
-		? Service.ClientState.LocalPlayer!.StatusFlags.HasFlag(StatusFlags.WeaponOut)
+		? Service.Objects.LocalPlayer!.StatusFlags.HasFlag(StatusFlags.WeaponOut)
 		: null;
 
 	[LuaPlayerDoc("Whether the game considers the current character to be in motion.")]

@@ -210,19 +210,19 @@ public class Plugin: IDalamudPlugin {
 				Service.DocumentationGenerator.Run();
 				break;
 			case "query":
-				if (Service.ClientState.LocalContentId == 0 || Service.ClientState.LocalPlayer is null) {
+				if (Service.PlayerState.ContentId == 0 || Service.Objects.LocalPlayer is null) {
 					this.Error("No character is loaded. You are probably not logged in.");
 					break;
 				}
 				if (args.Length >= 2) {
 					switch (args[1].ToLower()) {
 						case "id":
-							this.Print($"Your current character ID is {Service.ClientState.LocalContentId}.");
+							this.Print($"Your current character ID is {Service.PlayerState.ContentId}.");
 							break;
 						case "class":
 						case "job":
-							if (Service.ClientState.LocalPlayer.ClassJob.Value is ClassJob job) {
-								this.Print($"You current job is {job.RowId} ({job.Abbreviation}, {job.Name}) at level {Service.ClientState.LocalPlayer.Level}.");
+							if (Service.Objects.LocalPlayer.ClassJob.Value is ClassJob job) {
+								this.Print($"You current job is {job.RowId} ({job.Abbreviation}, {job.Name}) at level {Service.Objects.LocalPlayer.Level}.");
 							}
 							else {
 								this.Error("Cannot determine class/job details.");
@@ -230,7 +230,7 @@ public class Plugin: IDalamudPlugin {
 							break;
 						case "mount":
 							unsafe {
-								Character* player = (Character*)Service.ClientState.LocalPlayer.Address;
+								Character* player = (Character*)Service.Objects.LocalPlayer.Address;
 								if (!player->IsMounted()) {
 									this.Print("You are not mounted.");
 								}

@@ -39,6 +39,7 @@ internal class Service {
 	[PluginService] public static ITargetManager Targets { get; private set; } = null!;
 	[PluginService] public static IToastGui Toast { get; private set; } = null!;
 	[PluginService] public static INotificationManager Notifications { get; private set; } = null!;
+	[PluginService] public static IPlayerState PlayerState { get; private set; } = null!;
 
 	public static Hooks Hooks { get; internal set; } = null!;
 	public static IDtrBarEntry StatusLine { get; private set; } = null!;
